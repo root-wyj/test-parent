@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
+ * 具体一些使用可以看git：https://github.com/admin801122/springboot2-spring5-studying
  * Created
  * Author: wyj
  * Date: 2019/9/10

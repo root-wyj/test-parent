@@ -4,7 +4,7 @@ import net.sf.cglib.core.DebuggingClassWriter;
 import net.sf.cglib.proxy.Enhancer;
 
 /**
- * 参考自： https://blog.csdn.net/yhl_jxy/article/details/80633194
+ * 参考自： https://blog.csdn.net/yhl_jxy/article/details/80633194 将cglib 还是比较透彻的
  * Author: wyj
  * Date: 2019/9/20
  */
