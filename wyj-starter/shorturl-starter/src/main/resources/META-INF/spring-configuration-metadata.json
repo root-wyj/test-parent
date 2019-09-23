@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "name": "short-url",
+      "type": "com.wyj.shorturl.ShortUrlProperties",
+      "sourceType": "com.wyj.shorturl.ShortUrlProperties"
+    }
+
+  ],
+  "properties": [
+    {
+      "name": "short-url.host",
+      "type": "java.lang.String",
+      "sourceType": "com.wyj.shorturl.ShortUrlProperties"
+    }
+  ],
+  "hints": []
+}

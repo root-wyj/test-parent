@@ -1,0 +1,23 @@
+{
+  "groups": [
+    {
+      "name": "distribute.deviceid",
+      "type": "com.wyj.distribute.deviceid.DeviceIdProperties",
+      "sourceType": "com.wyj.distribute.deviceid.DeviceIdProperties"
+    }
+
+  ],
+  "properties": [
+    {
+      "name": "distribute.deviceid.bit-length",
+      "type": "java.lang.Integer",
+      "sourceType": "com.wyj.distribute.deviceid.DeviceIdProperties"
+    },
+    {
+      "name": "distribute.deviceid.host",
+      "type": "java.lang.String",
+      "sourceType": "com.wyj.distribute.deviceid.DeviceIdProperties"
+    }
+  ],
+  "hints": []
+}

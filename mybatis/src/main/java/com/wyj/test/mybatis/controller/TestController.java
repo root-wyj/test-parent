@@ -1,5 +1,6 @@
 package com.wyj.test.mybatis.controller;
 
+import com.wyj.shorturl.service.ShortUrlService;
 import com.wyj.test.mybatis.mapper.UserInfoMapper;
 import com.wyj.test.mybatis.model.UserInfo;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,5 +27,14 @@ public class TestController {
     @GetMapping("/list/{id}/{count}")
     public List<UserInfo> listUsers(@PathVariable("id") Long id, @PathVariable("count") Integer count) {
         return userInfoMapper.list(id, count);
+    }
+
+
+    @Resource
+    ShortUrlService shortUrlService;
+
+    @GetMapping("/shortUrl")
+    public String makeShortUrl() {
+        return shortUrlService.getShortUrl("http://www.baidu.com");
     }
 }
