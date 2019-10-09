@@ -27,7 +27,7 @@ public interface UserInfoMapper {
 //    @Select("<script>" +
 //            "SELECT id as id, nick_name as nickName, alipay_user_id as alipayUserId FROM user_info" +
 //            " where id in" +
-//            " <foreach collection=\"ids\", item=\"item\", prefix=\"(\", suffix=\")\", separator=\",\">" +
+//            " <foreach collection=\"ids\" item=\"item\" open=\"(\" close=\")\" separator=\",\">" +
 //            " #{item}" +
 //            " </foreach>" +
 //            " <if test=\"name!=null\"> and nick_name like concat('%', #{name}, '%')</if>" +
