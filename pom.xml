@@ -15,6 +15,7 @@
         <module>wyj-starter</module>
         <module>proxy</module>
         <module>jvm</module>
+        <module>netty</module>
     </modules>
 
     <properties>

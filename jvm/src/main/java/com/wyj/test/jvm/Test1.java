@@ -12,12 +12,15 @@ public class Test1 {
 
     /**
      * -Xmx1024m -Xms1024m -XX:NewRatio=4 -XX:SurvivorRatio=6 -XX:+PrintGCDetails -Xloggc:./logs_gc.log
+     * -verbose:class
      */
     public static void main(String[] args) {
         List<Object> objects = new ArrayList<>();
+        Class<?> cls = TestClassLoad.class;
         while(true) {
             Object o = new byte[1024*1024];
         }
+
     }
 
 }
