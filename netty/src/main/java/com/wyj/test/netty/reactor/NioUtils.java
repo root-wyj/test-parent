@@ -4,6 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.SocketChannel;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created
@@ -52,5 +54,10 @@ public class NioUtils {
     public static byte[] sendAndRecv(SocketChannel socketChannel, byte[] data) throws IOException {
         write(socketChannel, data);
         return read(socketChannel);
+    }
+
+    public static void print(String msg) {
+
+        System.out.println(Thread.currentThread().getName() + "---" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date()) + "---" +msg);
     }
 }

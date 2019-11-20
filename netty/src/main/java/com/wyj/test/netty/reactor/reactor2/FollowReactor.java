@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Semaphore;
 
 /**
  * Created
@@ -24,7 +25,7 @@ public class FollowReactor{
     private Selector selector;
     private ExecutorService selectorExecutor = Executors.newSingleThreadExecutor();
     private ExecutorService notifyExecutor = Executors.newSingleThreadExecutor();
-    boolean started = false;
+    boolean hasRegisted = false;
 
 
     public FollowReactor(int workerSize) throws IOException {
@@ -43,18 +44,35 @@ public class FollowReactor{
 
     public void register(SocketChannel channel) {
         try {
+
 //            notifyExecutor.submit(() -> {
 //                try {
 //                    Thread.sleep(500);
+//                    NioUtils.print("wakeup1");
+//                    selector.wakeup();
+////                    NioUtils.print("wakeup2");
+////                    selector.wakeup();
+//                    NioUtils.print("wakeup after");
+////                    int i = selector.selectNow();
+////                    NioUtils.print("selectNow:"+i);
+////                    if (i >0 ) processSelectKeys();
 //                } catch (InterruptedException e) {
 //                    e.printStackTrace();
 //                }
-//                selector.wakeup();
-//                System.out.println("wake up");
+//
+//
+////                selector.wakeup();
+////                NioUtils.print("wake up");
 //            });
+            NioUtils.print("register be ");
+            hasRegisted = true;
+            selector.wakeup();
+            NioUtils.print("wakeup1");
             channel.register(selector, SelectionKey.OP_READ | SelectionKey.OP_CONNECT);
-            System.out.println("register ed");
-        } catch (ClosedChannelException e) {
+            NioUtils.print("register ed ");
+//            selector.wakeup();
+//            NioUtils.print("wakeup2");
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -67,39 +85,59 @@ public class FollowReactor{
        而且尝试在register 之前 启动线程 延迟调用 selector.wakeup 也不行。。。
     4. 最后，只好使用 select(timeout) 的方式 来跑了。。。。
        暂时没有找到更好的方式。。。
+
+    最后找到了，register方法的注释上也写着。 register 会同步修改 interest，并且
      */
     private void start() {
         try {
-            while (true) {
 //                while (selector.select() > 0) {
-                if (selector.select(500) <= 0) {
-                    continue;
-                }
-
-                Set<SelectionKey> selectionKeys = selector.selectedKeys();
-                Iterator<SelectionKey> iterator = selectionKeys.iterator();
-                while (iterator.hasNext()) {
-                    SelectionKey next = iterator.next();
-                    iterator.remove();
-
-                    if (next.isReadable()) {
-                        SocketChannel channel = (SocketChannel) next.channel();
-                        byte[] read = NioUtils.read(channel);
-
-                        if (read == null) {
-                            System.out.println("socked disconnect:"+channel);
-                            channel.close();
-                        } else {
-                            submit(channel, read);
-                        }
-
-                    } else if (next.isConnectable()) {
-                        System.out.println("connect "+next.channel());
+            while (true) {
+                int i = selector.select();
+                // 也可以 理解为 wakeup 之后 select 太快了，导致 register 还是阻塞的，关键是 register 为什么会阻塞住呢
+                // 整个流程 如果这句话 注释掉 就走不通了，怀疑是 std io 影响到了
+//                NioUtils.print("select:"+i);
+                if (hasRegisted) {
+                    try {
+                        Thread.sleep(100);
+                        hasRegisted = false;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
+                if (i <= 0) continue;
+
+//                if (selector.select(500) <= 0) {
+//                    continue;
+//                }
+
+                processSelectKeys();
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void processSelectKeys() throws IOException {
+        Set<SelectionKey> selectionKeys = selector.selectedKeys();
+        Iterator<SelectionKey> iterator = selectionKeys.iterator();
+        while (iterator.hasNext()) {
+            SelectionKey next = iterator.next();
+            iterator.remove();
+
+            if (next.isReadable()) {
+                SocketChannel channel = (SocketChannel) next.channel();
+                byte[] read = NioUtils.read(channel);
+
+                if (read == null) {
+                    NioUtils.print("socked disconnect:"+channel);
+                    channel.close();
+                } else {
+                    submit(channel, read);
+                }
+
+            } else if (next.isConnectable()) {
+                NioUtils.print("connect "+next.channel());
+            }
         }
     }
 
@@ -122,9 +160,9 @@ public class FollowReactor{
             t.submit(() -> {
                 try {
                     String msg = new String(data);
-                    System.out.println("server receive:" + msg);
+                    NioUtils.print("server receive:" + msg);
                     if ("Bye".equals(msg)) {
-                        System.out.println("client say bye。 server close the socket");
+                        NioUtils.print("client say bye。 server close the socket");
                         socketChannel.close();
                     } else {
 
