@@ -36,13 +36,20 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <wyj-common.version>1.0-SNAPSHOT</wyj-common.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.wyj.apps.commons</groupId>
             <artifactId>common-utils</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${wyj-common.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.wyj.apps.commons</groupId>
+            <artifactId>common-core</artifactId>
+            <version>${wyj-common.version}</version>
         </dependency>
 
         <dependency>

@@ -1,3 +1,5 @@
 # Auto Configure
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.wyj.distribute.deviceid.DeviceIdAutoConfiguration
+com.wyj.distribute.deviceid.DeviceIdAutoConfiguration,\
+com.wyj.distribute.lock.DistributeLockAutoConfiguration,\
+com.wyj.distribute.lock.redis.RedisDistributeLockConfiguration
