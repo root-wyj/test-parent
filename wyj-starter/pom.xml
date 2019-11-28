@@ -29,6 +29,7 @@
     <modules>
         <module>distribute-design-starter</module>
         <module>shorturl-starter</module>
+        <module>timecost-starter</module>
     </modules>
 
     <properties>
