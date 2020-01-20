@@ -17,6 +17,9 @@
         <module>jvm</module>
         <module>netty</module>
         <module>spi</module>
+        <module>validation</module>
+        <module>utils</module>
+        <module>log4j2</module>
     </modules>
 
     <properties>
