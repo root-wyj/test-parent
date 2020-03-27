@@ -1,0 +1,7 @@
+server:
+  port: 2221
+spring:
+  security:
+    user:
+      name: root
+      password: 111111

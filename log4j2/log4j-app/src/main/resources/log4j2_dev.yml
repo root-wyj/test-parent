@@ -1,0 +1,40 @@
+Configuration:
+  status: debug
+  monitorInterval: 30
+
+  Properties:
+    Property:
+      - name: pattern1
+        value: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t %-5level %logger{36} (%F:%L) - %m%n"
+      - name: pattern2
+        value: "dev %d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t [%X{traceId}] (%F:%L) - %m%n"
+      - name: pattern3
+        value: "[%X{X-B3-TraceId},%X{X-B3-SpanId},%X{X-B3-ParentSpanId},%X{X-Span-Export}] %d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t [%X{traceId}] (%F:%L) - %m%n"
+
+  Appenders:
+    Console:
+      name: console
+      target: SYSTEM_OUT
+      PatternLayout:
+        pattern: ${pattern2}
+    RollingFile:
+      - name: rollingFileInfo
+        fileName: ./logs/info.log
+        filePattern: "./logs/$${date:yyyy-MM}/info-%d{yyyy-MM-dd}.log.gz"
+        PatternLayout:
+          pattern: ${pattern2}
+        Policies:
+          TimeBasedTriggeringPolicy:  # 按天分类
+            modulate: true
+            interval: 1
+        DefaultRolloverStrategy: # 最大保存多少天
+          max: 14
+
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+        - ref: console
+        - ref: rollingFileInfo
+
+

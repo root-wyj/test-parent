@@ -20,6 +20,9 @@
         <module>validation</module>
         <module>utils</module>
         <module>log4j2</module>
+        <module>kafka</module>
+        <module>security</module>
+        <module>mybatis-plus</module>
     </modules>
 
     <properties>

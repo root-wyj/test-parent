@@ -1,0 +1,6 @@
+server:
+  port: 20001
+  servlet:
+    context-path: /log4j2
+logging:
+  config: classpath:log4j2_dev.yml

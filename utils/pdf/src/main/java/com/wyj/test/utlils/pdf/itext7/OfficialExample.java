@@ -1,5 +1,8 @@
 package com.wyj.test.utlils.pdf.itext7;
 
+import com.itextpdf.io.font.PdfEncodings;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
 import com.itextpdf.layout.Document;
@@ -11,7 +14,9 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.itextpdf.layout.property.UnitValue;
 import com.itextpdf.layout.property.VerticalAlignment;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 
 /**
  * @author: wuyingjie
@@ -31,7 +36,24 @@ public class OfficialExample {
         protected void manipulatePdf(String dest) throws Exception {
             PdfDocument pdfDoc = new PdfDocument(new PdfWriter(dest));
             Document doc = new Document(pdfDoc);
-
+//            doc.setFont(PdfFontFactory.createFont());
+            PdfFont cjk = PdfFontFactory.createFont("/Users/wuyingjie/wyj/test-parent/utils/pdf/src/main/resources/NotoSansCJKsc-Regular.otf", PdfEncodings.IDENTITY_H, true);
+            doc.setFont(cjk);
+            FileInputStream fis = new FileInputStream("/Users/wuyingjie/wyj/test-parent/utils/pdf/src/main/resources/NotoSansCJKsc-Regular.otf");
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] data = new byte[1024];
+            int length = 0;
+            while ((length = fis.read(data)) > 0) {
+                baos.write(data, 0, length);
+            }
+            PdfFont cjk2 = PdfFontFactory.createFont(baos.toByteArray(), PdfEncodings.IDENTITY_H, true);
+            ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+            fis.close();
+            fis = new FileInputStream("/Users/wuyingjie/wyj/test-parent/utils/pdf/src/main/resources/NotoSansCJKsc-Regular.otf");
+            while ((length = fis.read(data)) > 0) {
+                baos2.write(data, 0, length);
+            }
+            PdfFont cjk3 = PdfFontFactory.createFont(baos2.toByteArray(), PdfEncodings.IDENTITY_H, true);
             Table table = new Table(UnitValue.createPercentArray(new float[]{1, 2, 2, 2, 1}));
 
             Cell cell;
@@ -48,7 +70,7 @@ public class OfficialExample {
             table.addCell("James");
             table.addCell("Fish");
             table.addCell("Stone");
-            table.addCell("17");
+            table.addCell("武英杰");
             doc.add(table);
 
             doc.close();
