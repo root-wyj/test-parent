@@ -12,14 +12,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 /**
- * @author wuyingjie <wuyingjie@kuaishou.com>
+ * @author wuyingjie
  * Created on 2020-02-10
  */
 
 @Configuration
 @EnableWebSecurity
 @Profile("jdbc")
-public class WebSecurityConfig_JDBC extends WebSecurityConfigurerAdapter {
+public class
+WebSecurityConfig_JDBC extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

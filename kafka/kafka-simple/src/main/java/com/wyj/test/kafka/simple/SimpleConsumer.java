@@ -11,7 +11,7 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
 /**
- * @author wuyingjie <wuyingjie@kuaishou.com>
+ * @author wuyingjie
  * Created on 2020-02-02
  */
 public class SimpleConsumer {

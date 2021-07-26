@@ -21,7 +21,7 @@ import java.io.InputStreamReader;
  */
 public class SecureChatClient {
 
-    static final String HOST = "192.168.0.60";
+    static final String HOST = "127.0.0.1";
     static final int SERVER_PORT = 11111;
 
     public static void main(String[] args) throws IOException, InterruptedException {

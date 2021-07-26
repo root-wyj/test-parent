@@ -23,6 +23,12 @@
         <module>kafka</module>
         <module>security</module>
         <module>mybatis-plus</module>
+        <module>micro-server</module>
+        <module>sentinel</module>
+        <module>axon</module>
+        <module>test</module>
+        <module>java-future</module>
+        <module>juc</module>
     </modules>
 
     <properties>

@@ -3,16 +3,16 @@ server:
 
 spring:
   datasource:
-    url: xxx
-    username: root
-    password: W#EVI7921Kjl
+    url: jdbc:mysql://bjfk-staging-d42.yz02:15733/wyj_test_db?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: test_rw
+    password: 54rltyi5BCdcm06wu22A0brvvzU5uDgB
     driver-class-name: com.mysql.jdbc.Driver
     platform: mysql
 
   redis:
-    host: 192.168.0.60 #47.98.221.42
+    host: 127.0.0.1 #47.98.221.42
     port: 6379
-    password: 123456 #68KjMkNBU3e
+#    password: 123456 #68KjMkNBU3e
     timeout: 3000ms
     jedis:
       pool:

@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: sentinel-server
+server:
+  port: 8084
+logging:
+  level:
+    "com.wyj.test.sentinel.app.feign": debug
+feign:
+  sentinel:
+    enabled: true

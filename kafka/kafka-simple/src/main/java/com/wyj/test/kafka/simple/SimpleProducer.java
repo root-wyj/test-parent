@@ -7,7 +7,7 @@ import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
 
 /**
- * @author wuyingjie <wuyingjie@kuaishou.com>
+ * @author wuyingjie
  * Created on 2020-02-02
  */
 public class SimpleProducer {
@@ -36,12 +36,12 @@ public class SimpleProducer {
         props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
         Producer<String, String> producer = new KafkaProducer<String, String>(props);
-        for (int i=0; i<100; i++) {
+        for (int i=0; i<1; i++) {
             // send 方法是异步的
             // 调用该方法会将消息 放入到 pending record的buffer中，并立刻返回
             // 如果客户端发送的速度超过了 提交给 kafka 服务器的速度，buffer 将会满，
             //  如果满了，send 方法就会被阻塞，超过了一定的(配置)时间，就会TimeOutException
-            producer.send(new ProducerRecord<String, String>("my-topic", Integer.toString(i), Integer.toString(i)));
+            producer.send(new ProducerRecord<String, String>("is_onboarding_new_event_notice_dev", Integer.toString(i), Integer.toString(i)));
         }
 
         producer.close();

@@ -10,9 +10,14 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+import com.wyj.test.security.simple.filter.MyFilter3;
 
 /**
- * @author wuyingjie <wuyingjie@kuaishou.com>
+ * @author wuyingjie
  * Created on 2020-02-10
  */
 
@@ -29,7 +34,11 @@ public class WebSecurityConfig_SIMPLE extends WebSecurityConfigurerAdapter {
 //                .and().authorizeRequests().antMatchers("*/**").authenticated()
                 .and().authorizeRequests().antMatchers("/test/admin/**").hasRole("admin")
                 .and().authorizeRequests().anyRequest().authenticated()
-                .and().formLogin();
+                .and().formLogin()
+//                .and().httpBasic()
+                .and().addFilterBefore(new MyFilter3(), UsernamePasswordAuthenticationFilter.class);
+
+        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 
     @Override
@@ -42,6 +51,7 @@ public class WebSecurityConfig_SIMPLE extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
+//        web.ignoring().antMatchers("").
         super.configure(web);
     }
 

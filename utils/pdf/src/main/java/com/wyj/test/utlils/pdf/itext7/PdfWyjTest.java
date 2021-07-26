@@ -90,13 +90,13 @@
 //        list.add(new ITextCellBuilderVO(1, 1, "电话"));
 //        list.add(new ITextCellBuilderVO(1, 3, "18513622109"));
 //        list.add(new ITextCellBuilderVO(1, 1, "邮箱"));
-//        list.add(new ITextCellBuilderVO(1, 3, "zhangqiaoji@kuaishou.com"));
+//        list.add(new ITextCellBuilderVO(1, 3, "zhangqiaoji@ 163.com"));
 //
 //        list.add(new ITextCellBuilderVO(2, 3, "金旭"));
 //        list.add(new ITextCellBuilderVO(1, 1, "电话"));
 //        list.add(new ITextCellBuilderVO(1, 3, "13810373858"));
 //        list.add(new ITextCellBuilderVO(1, 1, "邮箱"));
-//        list.add(new ITextCellBuilderVO(1, 3, "jinxu@kuaishou.com"));
+//        list.add(new ITextCellBuilderVO(1, 3, "jinxu@ 163.com"));
 //
 //        addCell(table, 9, list);
 //

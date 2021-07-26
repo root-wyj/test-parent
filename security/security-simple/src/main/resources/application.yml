@@ -5,3 +5,5 @@ spring:
     user:
       name: root
       password: 111111
+#  main:
+#    web-application-type: none

@@ -1,18 +1,20 @@
 package com.wyj.test.mybatis.plugin;
 
-import com.alibaba.fastjson.JSON;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Properties;
+
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
-import org.apache.ibatis.plugin.*;
+import org.apache.ibatis.plugin.Interceptor;
+import org.apache.ibatis.plugin.Intercepts;
+import org.apache.ibatis.plugin.Invocation;
+import org.apache.ibatis.plugin.Plugin;
+import org.apache.ibatis.plugin.Signature;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Component;
-
-import java.util.Properties;
 
 /**
  * Created
@@ -27,7 +29,7 @@ import java.util.Properties;
                 args={MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})
 })
 @Component
-@Slf4j
+//@Slf4j
 public class TestPlugin implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {

@@ -9,7 +9,7 @@ import java.sql.*;
  */
 public class Main {
 
-    private static final String URL = "jdbc:mysql://rm-bp11fo7r52fp6qc61xo.mysql.rds.aliyuncs.com:3306/student_card?useUnicode=true&characterEncoding=utf-8&useSSL=false";
+    private static final String URL = "jdbc:mysql://.com:3306/student_card?useUnicode=true&characterEncoding=utf-8&useSSL=false";
     private static final String USERNAME = "root";
     private static final String PSWD = "W#EVI7921Kjl";
 

@@ -1,0 +1,9 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: micro-server-ribbon
+
+users:
+  ribbon:
+    listOfServers: http://161.117.15.122:11111

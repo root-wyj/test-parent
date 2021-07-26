@@ -1,5 +1,7 @@
 package com.wyj.test.jvm;
 
+import sun.reflect.Reflection;
+
 /**
  * Created
  * Author: wyj
@@ -14,7 +16,8 @@ public class TestClassLoader {
             System.out.println(classLoader);
             classLoader = classLoader.getParent();
         }
-
+        System.out.println(ClassLoader.getSystemClassLoader());
+//        System.out.println(Reflection.getCallerClass());
         System.out.println(Thread.currentThread().getContextClassLoader());
     }
 }
