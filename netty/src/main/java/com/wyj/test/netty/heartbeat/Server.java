@@ -23,7 +23,7 @@ public class Server {
 
     public static void main(String[] args) throws InterruptedException {
 
-        NioEventLoopGroup boss = new NioEventLoopGroup();
+        NioEventLoopGroup boss = new NioEventLoopGroup(1);
         NioEventLoopGroup worker = new NioEventLoopGroup();
 
         try {
@@ -40,8 +40,11 @@ public class Server {
                             ch.pipeline().addLast(new HeartBeatServerHandler());
                         }
                     });
+            System.out.println("server start ing");
             ChannelFuture channelFuture = server.bind(PORT).sync();
+            System.out.println("server started");
             channelFuture.channel().closeFuture().sync();
+            System.out.println("server shutdown");
         } finally {
             worker.shutdownGracefully();
             boss.shutdownGracefully();

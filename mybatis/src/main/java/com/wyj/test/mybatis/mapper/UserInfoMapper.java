@@ -40,4 +40,24 @@ public interface UserInfoMapper {
             "</script>")
     int update(@Param("id")Long id, @Param("nickName")String name);
 
+    // case when mybatis sql
+    /*
+        <update id="updateTopicTagBatch">
+    update content_understanding
+        <trim prefix="set" suffixOverrides=",">
+            <foreach collection="list" item="item" open="topic_tag=case content_id" close="end,">
+    when #{item.contentId} then #{item.topicTag}
+            </foreach>
+            <foreach collection="list" item="item" open="topic_tag_detail=case content_id" close="end,">
+    when #{item.contentId} then #{item.topicTagDetail}
+            </foreach>
+        </trim>
+            ,gmt_modified=now()
+    where content_id in
+            <foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item.contentId}
+        </foreach>
+    </update>
+     */
+
 }

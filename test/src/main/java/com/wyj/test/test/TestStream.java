@@ -1,5 +1,7 @@
 package com.wyj.test.test;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -94,6 +96,11 @@ public class TestStream {
 //                .sorted(Comparator.nullsLast(Comparator.comparing(Foo::getN)))
                 .collect(Collectors.toList());
         System.out.println(list);
+        System.out.println(list.stream()
+                //先根据m倒序，如果m相同，n倒序。 null放在最后
+                .sorted(Comparator.comparing(Foo::getM, Comparator.nullsLast((Comparator<Integer>)(Comparator.naturalOrder().reversed())))
+                        .thenComparing(Foo::getN, Comparator.nullsLast((Comparator<Integer>)(Comparator.naturalOrder().reversed()))))
+                .collect(Collectors.toList()));
     }
 
     private static void reduce() {
@@ -109,5 +116,18 @@ public class TestStream {
             return set1;
         });
         System.out.println(set3);
+    }
+
+    public static void xixi() throws Exception {
+        FileReader fr = new FileReader("aaa/1124/1.txt");
+        FileWriter fw = new FileWriter("aaa/1124/3.txt");
+
+
+        int a ;
+        int read = fr.read();
+        System.out.println(read);
+        fw.write(read);
+        fw.close();
+        fr.close();
     }
 }

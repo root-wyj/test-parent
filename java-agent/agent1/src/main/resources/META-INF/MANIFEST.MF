@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Created-By: fengzheng
+Can-Redefine-Classes: true
+Can-Retransform-Classes: true
+Premain-Class: com.wyj.agent.agent1.TestAgent1

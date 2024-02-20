@@ -29,6 +29,9 @@
         <module>test</module>
         <module>java-future</module>
         <module>juc</module>
+        <module>java-agent</module>
+        <module>lucene</module>
+        <module>future</module>
     </modules>
 
     <properties>
@@ -37,6 +40,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <fastjson.version>1.2.58</fastjson.version>
+        <guava.version>30.1.1-jre</guava.version>
         <common-lang3.version>3.8.1</common-lang3.version>
         <druid-starter.version>1.1.9</druid-starter.version>
         <mysql.version>5.1.39</mysql.version>
@@ -82,7 +86,16 @@
                 <artifactId>common-core</artifactId>
                 <version>${wyj-common.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
 
         </dependencies>
 
